@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
-// import { render } from '@testing-library/react';
-// import classes from '*.module.css';
 
 class App extends Component {
 
-  // Constructor
   constructor(props){
     super(props);
     this.state = {
       name: '',
       messedge: '',
-      // content: '',
       book: []
     }
     
@@ -23,7 +19,6 @@ class App extends Component {
     this.updateScroll();
   }
 
-  // Other functions
   onChange = (e) => {
     let name = this.state.name;
     let mes = this.state.messedge;
@@ -60,7 +55,6 @@ class App extends Component {
     console.log(element)
     element.scrollTop = element.scrollHeight;
 }
-
 
   render() {
     return (
