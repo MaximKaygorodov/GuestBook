@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './style.css'
 
 class App extends Component {
 
@@ -6,7 +7,7 @@ class App extends Component {
     super(props);
     this.state = {
       name: '',
-      messedge: '',
+      message: '',
       book: []
     }
     
@@ -14,42 +15,41 @@ class App extends Component {
   componentWillMount(){
     this.getContent();
   }
-
+  
   componentDidMount(){
     this.updateScroll();
   }
-
   onChange = (e) => {
     let name = this.state.name;
-    let mes = this.state.messedge;
+    let mes = this.state.message;
     if (e.target.name === "firstname"){
       name = e.target.value;
       this.setState({name: name});
     }
-    else if (e.target.name === "messedge"){
+    else if (e.target.name === "message"){
       mes = e.target.value;
-      this.setState({messedge: mes});
-      console.log(this.state.messedge)
+      this.setState({message: mes});
+      console.log(this.state.message)
     }
   }
 
 
   getContent = () => {
-    fetch(`/api/submit?name=${encodeURIComponent(this.state.name)}&messedge=${encodeURIComponent(this.state.messedge)}`)
+    fetch(`/api/submit?name=${encodeURIComponent(this.state.name)}&message=${encodeURIComponent(this.state.message)}`)
       .then(response => response.json())
       .then(state => this.setState({book : state}));
-  }
-
-
-  onSubmit = (e) => {
-    e.preventDefault();
-    if (this.state.name && this.state.messedge){
-      this.getContent();
     }
-    console.log(this.state.book) 
-    this.updateScroll();
-  }
-
+    
+    
+    onSubmit = (e) => {
+      e.preventDefault();
+      if (this.state.name && this.state.message){
+        this.getContent();
+      }
+      console.log(this.state.book) 
+      this.updateScroll();
+    }
+    
   updateScroll = () => {
     var element = document.getElementById("chat");
     console.log(element)
@@ -59,37 +59,41 @@ class App extends Component {
   render() {
     return (
         <div class='container h-100'>
-        <div class='card mh-100 mt-4 mb-4'>
-          <div class = "card-body card-body-advanced" id="chat">
-              <p class='align-bottom'>
-                {this.state.book.map(mes => <div class="mt-4"><h5>{mes.name}</h5>{mes.messedge}</div>)}
-              </p>
+          <div class='m-3'>
+            <h1>Guest Book</h1>
           </div>
+          <div class='card card-adv mt-4 mb-4'>
+            <div class = "card-body card-body-adv" id="chat">
+                <p class='align-bottom'>
+                  {this.state.book.map(mes => <div class="mt-4"><h5>{mes.name}</h5>{mes.message}</div>)}
+                </p>
+            </div>
 
-          <div class='card-footer pb-5'>
+            <div class='card-footer'>
 
-            <h1>Hi Mark!</h1>
-            <form onSubmit={this.onSubmit}>
+              {/* <h3>Please, enter your name and what you want to say</h3> */}
+              <form onSubmit={this.onSubmit}>
 
-              <div class = 'row'>
-                <div class = 'mt-1 col-md-12 col-lg-2'>
-                  <input placeholder="Enter your Name" onChange={this.onChange} value={this.state.name}  class="form-control" name="firstname"></input>
+                <div class = 'row'>
+                  <div class = 'mt-1 col-md-12 col-lg-2'>
+                    <input placeholder="Enter your Name" onChange={this.onChange} value={this.state.name}  class="form-control" name="firstname"></input>
+                  </div>
+
+                  <div class = "mt-1 col-lg-8 col-xl-9">
+                    <input placeholder="Enter message" onChange={this.onChange} name="message" class="form-control"></input>
+                  </div>
+
+                  <div class=" mt-1 col">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
                 </div>
 
-                <div class = "mt-1 col-lg-8 col-xl-9">
-                  <input placeholder="Enter messedge" onChange={this.onChange} name="messedge" class="form-control"></input>
-                </div>
-
-                <div class=" mt-1 col">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </div>
-
-            </form>
+              </form>
+          </div>
         </div>
       </div>
-      </div>
     );}
-}
-
+    
+  }
+  
 export default App;

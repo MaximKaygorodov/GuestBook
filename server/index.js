@@ -25,12 +25,12 @@ app.get('/api/request_data', (req, res) => {
 
 
 app.get('/api/submit', (req, res) => {
-  if (req.query.name && req.query.messedge){
+  if (req.query.name && req.query.message){
     const name = req.query.name;
-    const messedge = req.query.messedge;
+    const message = req.query.message;
     let newContent = {
       name: name,
-      messedge: messedge
+      message: message
     }  
     addInFile('content.json', newContent);
   }
