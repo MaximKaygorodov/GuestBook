@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs')
+const cors = require('cors');
 
 
 const app = express();
@@ -15,6 +16,8 @@ function addInFile(file, newContent){
   fs.writeFileSync(file, json);
 }
 
+
+app.use(cors())
 
 app.get('/api/request_data', (req, res) => {
   const raw = fs.readFileSync("content.json", "utf8");
