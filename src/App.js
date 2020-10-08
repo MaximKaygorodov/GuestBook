@@ -35,7 +35,7 @@ class App extends Component {
 
 
   getContent = () => {
-    fetch(`/api/submit?name=${encodeURIComponent(this.state.name)}&message=${encodeURIComponent(this.state.message)}`)
+    fetch(`http://localhost:3001/api/submit?name=${encodeURIComponent(this.state.name)}&message=${encodeURIComponent(this.state.message)}`)
       .then(response => response.json())
       .then(state => this.setState({book : state}));
     }
