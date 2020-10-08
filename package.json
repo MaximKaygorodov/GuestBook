@@ -1,6 +1,5 @@
 {
   "homepage": "https://maximkaygorodov.github.io/GuestBook/",
-  "proxy": "http://localhost:3001",
   "name": "check_list",
   "version": "0.1.0",
   "private": true,
