@@ -12,11 +12,13 @@ class App extends Component {
     }
     
   }
-  componentWillMount(){
-    this.getContent();
-  }
   
   componentDidMount(){
+    const url = `http://localhost:3001/api/request_data`;
+    fetch(url)
+      .then(response => response.json())
+      .then(state => this.setState({book : state}));
+    console.log("data requested")
     this.updateScroll();
   }
   onChange = (e) => {
@@ -29,7 +31,7 @@ class App extends Component {
     else if (e.target.name === "message"){
       mes = e.target.value;
       this.setState({message: mes});
-      console.log(this.state.message)
+      // console.log(this.state.message)
     }
   }
 
@@ -55,7 +57,7 @@ class App extends Component {
     
   updateScroll = () => {
     var element = document.getElementById("chat");
-    console.log(element)
+    // console.log(element)
     element.scrollTop = element.scrollHeight;
 }
 
@@ -67,9 +69,7 @@ class App extends Component {
           </div>
           <div class='card card-adv mt-4 mb-4'>
             <div class = "card-body card-body-adv" id="chat">
-                <p class='align-bottom'>
                   {this.state.book.map(mes => <div class="mt-4"><h5>{mes.name}</h5>{mes.message}</div>)}
-                </p>
             </div>
 
             <div class='card-footer'>

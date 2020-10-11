@@ -6,6 +6,7 @@ const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors())
 
 
 function addInFile(file, newContent){
@@ -17,12 +18,11 @@ function addInFile(file, newContent){
 }
 
 
-app.use(cors())
 
 app.get('/api/request_data', (req, res) => {
   const raw = fs.readFileSync("content.json", "utf8");
   const content = JSON.parse(raw);
-  console.log(content)
+  console.log('data responded')
   res.send(content);
 });
 
