@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs')
 const cors = require('cors');
+var PORT = process.env.PORT || 3001
 
 
 const app = express();
@@ -44,6 +45,6 @@ app.get('/api/submit', (req, res) => {
 });
 
 
-app.listen(3001, () =>
-  console.log('Express server is running on localhost:3001')
+app.listen(PORT, () =>
+  console.log('Express server is running')
 );
