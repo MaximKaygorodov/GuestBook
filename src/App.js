@@ -38,8 +38,8 @@ class App extends Component {
 
   getContent = () => {
     
-    const url = "https://servername123.herokuapp.com/api/submit?name=${encodeURIComponent(this.state.name)}&message=${encodeURIComponent(this.state.message)}";
-    alert(url)
+    const url = `https://servername123.herokuapp.com/api/submit?name=${encodeURIComponent(this.state.name)}&message=${encodeURIComponent(this.state.message)}`;
+    // alert(url)
     fetch(url)
       .then(response => response.json())
       .then(state => this.setState({book : state}));
