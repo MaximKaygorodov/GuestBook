@@ -38,7 +38,7 @@ class App extends Component {
 
   getContent = () => {
     //   "proxy": "http://localhost:3001",
-    const url = `http://localhost:3001/api/submit?name=${encodeURIComponent(this.state.name)}
+    const url = `https://servername123.herokuapp.com/api/submit?name=${encodeURIComponent(this.state.name)}
                 &message=${encodeURIComponent(this.state.message)}`;
     fetch(url)
       .then(response => response.json())
