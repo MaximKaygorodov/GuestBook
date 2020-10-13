@@ -37,7 +37,6 @@ class App extends Component {
 
 
   getContent = () => {
-    
     const url = `https://servername123.herokuapp.com/api/submit?name=${encodeURIComponent(this.state.name)}&message=${encodeURIComponent(this.state.message)}`;
     // alert(url)
     fetch(url)
@@ -68,7 +67,11 @@ class App extends Component {
           </div>
           <div class='card card-adv mt-4 mb-4'>
             <div class = "card-body card-body-adv" id="chat">
-                  {this.state.book.map(mes => <div class="mt-4"><h5>{mes.name}</h5>{mes.message}</div>)}
+                  {
+                    (this.state.book[0]) ? 
+                    (this.state.book.map(mes => <div class="mt-4"><h5>{mes.name}</h5>{mes.message}</div>)):
+                    (<h5 class="mt-4">Loading...</h5>)
+                  }
             </div>
 
             <div class='card-footer'>
