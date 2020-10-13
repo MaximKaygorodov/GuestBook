@@ -16,6 +16,7 @@ function addInFile(file, newContent){
   content.push(newContent);
   json = JSON.stringify(content);
   fs.writeFileSync(file, json);
+  return
 }
 
 

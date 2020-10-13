@@ -19,8 +19,13 @@ class App extends Component {
       .then(response => response.json())
       .then(state => this.setState({book : state}));
     console.log("data requested")
-    this.updateScroll();
+    this.scrollToBottom();
   }
+
+  componentDidUpdate(){
+    this.scrollToBottom();
+  }
+
   onChange = (e) => {
     let name = this.state.name;
     let mes = this.state.message;
@@ -37,8 +42,8 @@ class App extends Component {
 
 
   getContent = () => {
-    const url = `https://servername123.herokuapp.com/api/submit?name=${encodeURIComponent(this.state.name)}&message=${encodeURIComponent(this.state.message)}`;
-    // alert(url)
+    const url = `https://servername123.herokuapp.com/api/submit?name=${encodeURIComponent(this.state.name)}
+                &message=${encodeURIComponent(this.state.message)}`;
     fetch(url)
       .then(response => response.json())
       .then(state => this.setState({book : state}));
@@ -50,12 +55,11 @@ class App extends Component {
       this.getContent();
     }
     console.log(this.state.book) 
-    this.updateScroll();
+    document.getElementById('message').value = '';
   }
     
-  updateScroll = () => {
+  scrollToBottom = () => {
     var element = document.getElementById("chat");
-    // console.log(element)
     element.scrollTop = element.scrollHeight;
 }
 
@@ -66,17 +70,16 @@ class App extends Component {
             <h1>Guest Book</h1>
           </div>
           <div class='card card-adv mt-4 mb-4'>
+
             <div class = "card-body card-body-adv" id="chat">
                   {
                     (this.state.book[0]) ? 
-                    (this.state.book.map(mes => <div class="mt-4"><h5>{mes.name}</h5>{mes.message}</div>)):
+                    (this.state.book.map(mes => <div class="mt-4"><h5>{mes.name}</h5><p>{mes.message}</p></div>)):
                     (<h5 class="mt-4">Loading...</h5>)
                   }
             </div>
 
             <div class='card-footer'>
-
-              {/* <h3>Please, enter your name and what you want to say</h3> */}
               <form onSubmit={this.onSubmit}>
 
                 <div class = 'row'>
@@ -85,7 +88,7 @@ class App extends Component {
                   </div>
 
                   <div class = "mt-1 col-lg-8 col-xl-9">
-                    <input placeholder="Enter message" onChange={this.onChange} name="message" class="form-control"></input>
+                    <input placeholder="Enter message" id="message" onChange={this.onChange} name="message" class="form-control"></input>
                   </div>
 
                   <div class=" mt-1 col">
