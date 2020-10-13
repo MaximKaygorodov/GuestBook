@@ -1,1 +1,0 @@
-{"version":3,"sources":["style.css"],"names":[],"mappings":"AAAA,eACI,WAAY,CACZ,iBACJ,CAEA,UACI,gBACJ","file":"main.649045df.chunk.css","sourcesContent":[".card-body-adv {\r\n    height: 65vh;\r\n    overflow-y: scroll;\r\n}\r\n\r\n.card-adv {\r\n    max-height: 100vh;\r\n}"]}
